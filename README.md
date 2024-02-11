@@ -15,3 +15,5 @@ Modernizing HealthCare North's website infrastructure will reduce operational co
 
 ## Branching Strategy
 GitHub Flow is the branching strategy for this project. The main branch contains the production-ready code. Feature branches will be created and used for developing code. Once a Developer is ready to push code to the main branch, they will use a pull request. The user will ask one of the other contributors to review the pull request. Once the other contributor confirms the new features are ready to be merged with the main branch, they will approve the pull request. The creator of the feature branch can then delete to feature branch. 
+
+## Pull Request Workflow
