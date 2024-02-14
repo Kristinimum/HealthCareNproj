@@ -9,7 +9,7 @@ terraform {
   backend "s3" {
 
     encrypt        = true
-    bucket         = "pod2-hcn-022024-v1.0.2"
+    bucket         = "pod2-hcn-022024"
     key            = "backend/tfstate"
     dynamodb_table = "tfstate-lock-dynamo"
     region         = "us-east-1"
