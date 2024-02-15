@@ -5,13 +5,13 @@ locals {
 resource "aws_cloudfront_distribution" "s3_distribution" {
   origin {
     domain_name              = aws_s3_bucket.website_bucket.bucket_regional_domain_name
-    origin_access_control_id = aws_cloudfront_origin_access_control.default.id
+    origin_access_control_id = aws_cloudfront_origin_access_control.OAC.id
     origin_id                = local.s3_origin_id
   }
 
   enabled             = true
   is_ipv6_enabled     = true
-  comment             = "Some comment"
+  comment             = "Origin S3 bucket:website_bucket, index.html"
   default_root_object = "index.html"
 
 
