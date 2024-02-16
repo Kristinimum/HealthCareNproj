@@ -1,5 +1,5 @@
 variable "bucket_name" {
   type    = string
-  default = "mytestbucket-fh87er7f"
+  default = "healthcare-north-website-bucket-2024"
 }
 
