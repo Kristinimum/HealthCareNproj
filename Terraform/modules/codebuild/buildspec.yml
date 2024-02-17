@@ -11,17 +11,17 @@ phases:
       python: 3.7
     on-failure: ABORT
     commands:
-    - tf_version=$TERRAFORM_VERSION
-    - sudo yum install -y yum-utils shadow-utils
-    - sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
-    - sudo yum -y install terraform
-    #- unzip terraform_"$TERRAFORM_VERSION"_Linux_amd64.zip #not sure if I need this
-    - mv terraform /usr/local/bin
+      - tf_version=$TERRAFORM_VERSION
+      - sudo yum install -y yum-utils shadow-utils
+      - sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
+      - sudo yum -y install terraform
+     #- unzip terraform_"$TERRAFORM_VERSION"_Linux_amd64.zip #not sure if I need this
+      - mv terraform /usr/local/bin
 ###This completes the install phase###    commands:
      
   build:
     commands:
-      - cd path/to/your/terraform/files
+      - cd ./Terraform/modules   #or would we site HealthCareNproj/Terraform/modules ??
       - terraform init -input=false
       - terraform validate
       - terraform plan -input=false -out=tfplan
