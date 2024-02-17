@@ -6,7 +6,7 @@ resource "aws_codebuild_project" "my_project" {
   name       = "my-codebuild-project"
   description= "My CodeBuild Project"
   
-  service_role = aws_iam_role.my_codebuild_role.arn
+  service_role = aws_iam_role.CodeBuildServiceRole.arn
   
   artifacts {
     type = "NO_ARTIFACTS"
@@ -24,6 +24,7 @@ resource "aws_codebuild_project" "my_project" {
 
   source {
     type            = "CODEPIPELINE"
+    buildspec = "buildspec.yml"    #doublecheck referencing correct buildspec file
   }
 
   tags = {
@@ -31,18 +32,38 @@ resource "aws_codebuild_project" "my_project" {
   }
 }
 
-resource "aws_iam_role" "my_codebuild_role" {
-  name               = "my-codebuild-role"
-  assume_role_policy = jsonencode({
-    Version = "2012-10-17",
-    Statement = [{
-      Effect    = "Allow",
-      Principal = {
+resource "aws_iam_role" "CodeBuildServiceRole" {
+  name               = "CodeBuildServiceRole"
+  assume_role_policy = jsonencode(
+    {
+      "Version": "2012-10-17",
+	    "Statement": [
+		{
+			"Action": [
+				"s3:*",
+				"cloudfront:CreateInvalidation",
+				"codebuild:StartBuild",
+				"codebuild:BatchGetBuilds",
+				"logs:CreateLogGroup",
+				"logs:CreateLogStream",
+				"logs:PutLogEvents",
+				"ssm:CreateAssociation",
+				"ssm:CreateAssociationBatch",
+				"ssm:UpdateAssociation",
+				"ssm:UpdateAssociationStatus",
+				"codecommit:GetBranch",
+				"codecommit:GetCommit",
+				"codecommit:UploadArchive"
+			],
+			"Resource": "*",
+			"Effect": "Allow"
+      Principal = {                           #I'm not sure if we need lines 60-63    
         Service = "codebuild.amazonaws.com"
       },
       Action    = "sts:AssumeRole"
-    }]
-  })
+		}
+	]
+}
 
   // Attach policies as needed
  
