@@ -2,7 +2,7 @@
 variable "project_name" {
   description = "codebuild project name"
   type        = string
-  default     = null
+  default     = "Pod2_HCN_Pipeline"
 }
 
 variable "s3_bucket_id" {
@@ -60,11 +60,11 @@ variable "output_artifact_format" {
   default     = "CODE_ZIP"
 }
 
-variable "role_arn" {
-  description = "role_arn"
-  type        = string
-  default     = "codepipeline_role"
-}
+#variable "role_arn" {
+ # description = "role_arn"
+  #type        = string
+  #default     = "codepipeline_role"
+#}
 
 variable "role_name" {
   description = "role_name"
