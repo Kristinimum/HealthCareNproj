@@ -33,6 +33,10 @@ module "cloudfront_dist" {
   bucket_domain = module.buckets_s3.bucket_domain
 }
 
+module "codebuild" {
+  source = ".modules/codebuild"
+}
+
 
 #############      OUTPUTS      ################
 
