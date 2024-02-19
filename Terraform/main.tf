@@ -5,6 +5,7 @@ terraform {
       version = "5.36.0"
     }
   }
+
   backend "s3" {
 
     encrypt        = true
@@ -20,10 +21,9 @@ provider "aws" {
   region = "us-east-1"
 
   #assume_role {
-  #role_arn = "arn:aws:iam::654654434704:role/CodePipelineServiceRole"
+  #role_arn = "arn:aws:iam::########:role/CodePipelineServiceRole"
   #}
 }
-
 
 locals {
   tags = {
@@ -38,10 +38,10 @@ locals {
 
 module "codepipeline" {
   source = "./modules/codepipeline"
-  #source             = "https://github.com/Kristinimum/HealthCareNproj/tree/main/Terraform/modules/codepipeline?ref=main"
-  project_name       = var.project_name
-  s3_bucket_id       = var.s3_bucket_id
-  full_repository_id = var.full_repository_id
+  #source             = "https://github.com/Kristinimum/HealthCareNproj/tree/main/Terraform/files"
+  #project_name       = var.project_name
+  #s3_bucket_id       = var.s3_bucket_id
+  #full_repository_id = var.full_repository_id
 }
 
 module "buckets_s3" {
