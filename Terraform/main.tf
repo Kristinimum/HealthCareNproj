@@ -24,6 +24,10 @@ provider "aws" {
   #}
 }
 
+provider "aws" {
+  source  = "github.com/hashicorp/aws"
+  version = "v2"
+}
 
 locals {
   tags = {
@@ -38,7 +42,7 @@ locals {
 
 module "codepipeline" {
   source = "./modules/codepipeline"
-  #source             = "https://github.com/Kristinimum/HealthCareNproj/tree/main/Terraform/modules/codepipeline?ref=main"
+  #source             = "https://github.com/Kristinimum/HealthCareNproj/tree/main/Terraform/files"
   project_name       = var.project_name
   s3_bucket_id       = var.s3_bucket_id
   full_repository_id = var.full_repository_id

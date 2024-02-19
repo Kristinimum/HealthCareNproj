@@ -1,13 +1,9 @@
-data "github_repository" "repo" {
-  owner = "Kristinimum"
-  name  = "HealthCareNproj"
-}
-
 resource "aws_codepipeline" "Pod2_HCN_Pipeline" {
 
   name     = var.project_name  
   role_arn = "arn:aws:iam::654654434704:role/CodePipelineServiceRole"
-
+  
+  
   artifact_store {
     type     = var.artifacts_store_type
     location = var.s3_bucket_id
@@ -20,7 +16,7 @@ resource "aws_codepipeline" "Pod2_HCN_Pipeline" {
       category         = "Source"
       owner            = "ThirdParty"
       provider         = var.source_provider
-      version          = "1"
+      version          = "2"
       output_artifacts = [var.output_artifacts]
       configuration = {
         FullRepositoryId     = var.full_repository_id
@@ -37,7 +33,7 @@ resource "aws_codepipeline" "Pod2_HCN_Pipeline" {
       name            = "Build"
       category        = "Build"
       provider        = "CodeBuild"
-      version         = "1"
+      version         = "2"
       owner           = "AWS"
       input_artifacts = [var.input_artifacts]
       configuration = {
