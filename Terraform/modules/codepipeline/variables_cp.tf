@@ -8,7 +8,7 @@ variable "project_name" {
 variable "s3_bucket_id" {
   description = "s3_bucket_id"
   type        = string
-  default     = ""
+  default     = "healthcare-north-website-bucket-2024"
 }
 
 variable "artifacts_store_type" {
