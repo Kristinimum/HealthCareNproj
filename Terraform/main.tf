@@ -20,7 +20,7 @@ provider "aws" {
   region = "us-east-1"
 
   #assume_role {
-   #role_arn = "arn:aws:iam::654654434704:role/CodePipelineServiceRole"
+  #role_arn = "arn:aws:iam::654654434704:role/CodePipelineServiceRole"
   #}
 }
 
@@ -39,10 +39,10 @@ locals {
 module "codepipeline" {
   source = "./modules/codepipeline"
   #source             = "https://github.com/Kristinimum/HealthCareNproj/tree/main/Terraform/modules/codepipeline?ref=main"
-  project_name                   = var.project_name
-  s3_bucket_id                   = var.s3_bucket_id
-  full_repository_id             = var.full_repository_id
- }
+  project_name       = var.project_name
+  s3_bucket_id       = var.s3_bucket_id
+  full_repository_id = var.full_repository_id
+}
 
 module "buckets_s3" {
   source = "./modules/s3"

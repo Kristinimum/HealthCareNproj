@@ -1,3 +1,8 @@
+data "github_repository" "repo" {
+  owner = "Kristinimum"
+  name  = "HealthCareNproj"
+}
+
 resource "aws_codepipeline" "Pod2_HCN_Pipeline" {
 
   name     = var.project_name  
@@ -13,7 +18,7 @@ resource "aws_codepipeline" "Pod2_HCN_Pipeline" {
     action {
       name             = "Source"
       category         = "Source"
-      owner            = "AWS"
+      owner            = "ThirdParty"
       provider         = var.source_provider
       version          = "1"
       output_artifacts = [var.output_artifacts]
@@ -36,7 +41,7 @@ resource "aws_codepipeline" "Pod2_HCN_Pipeline" {
       owner           = "AWS"
       input_artifacts = [var.input_artifacts]
       configuration = {
-        ProjectName = var.project_name
+        ProjectName = var.name_pod2
       }
     }
   }
@@ -73,7 +78,5 @@ resource "aws_codepipeline" "Pod2_HCN_Pipeline" {
   #     }
   #   }
   # }
-  #
 }
-
 

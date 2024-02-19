@@ -5,6 +5,12 @@ variable "project_name" {
   default     = "Pod2_HCN_Pipeline"
 }
 
+variable "name_pod2" {
+  description = "codebuild project name"
+  type        = string
+  default     = "HCN_Pod2"
+}
+
 variable "s3_bucket_id" {
   description = "s3_bucket_id"
   type        = string
@@ -17,11 +23,16 @@ variable "artifacts_store_type" {
   default     = "S3"
 }
 
+variable "repo_name" {
+  description = "repository"
+  type        = string
+  default     = "Pod2_HCN_Repo"
+}
 
 variable "source_provider" {
   description = "source_provider"
   type        = string
-  default     = "CodeStarSourceConnection"
+  default     = "GitHub"
 }
 
 variable "input_artifacts" {
@@ -52,6 +63,7 @@ variable "codestar_connector_credentials" {
   description = "codestar_connector_credentials"
   type        = string
   default     = ""
+  sensitive = true  # Consider marking sensitive variables
 }
 
 variable "output_artifact_format" {
@@ -59,12 +71,6 @@ variable "output_artifact_format" {
   type        = string
   default     = "CODE_ZIP"
 }
-
-#variable "role_arn" {
- # description = "role_arn"
-  #type        = string
-  #default     = "codepipeline_role"
-#}
 
 variable "role_name" {
   description = "role_name"
