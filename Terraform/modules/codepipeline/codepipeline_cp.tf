@@ -1,23 +1,28 @@
+##############      CODEPIPELINE RESOURCE BLOCK     ################
+
 resource "aws_codepipeline" "Pod2_HCN_Pipeline" {
 
-  name     = var.project_name  
-  role_arn = "arn:aws:iam::654654434704:role/CodePipelineServiceRole"
-  
-  
+  name     = var.project_name
+  role_arn = "arn:aws:iam::#######:role/CodePipelineServiceRole"
+
+
   artifact_store {
     type     = var.artifacts_store_type
     location = var.s3_bucket_id
   }
+
+
+##############      CODEPIPELINE STAGES BLOCK       ################
 
   stage {
     name = "Source"
     action {
       name             = "Source"
       category         = "Source"
-      owner            = "ThirdParty"
-      provider         = var.source_provider
-      version          = "2"
-      output_artifacts = [var.output_artifacts]
+      owner            = "AWS"
+      provider         = "CodeStarSourceConnection"
+      version          = "1"
+      output_artifacts = ["source_output"]
       configuration = {
         FullRepositoryId     = var.full_repository_id
         BranchName           = var.branch_name
@@ -27,20 +32,20 @@ resource "aws_codepipeline" "Pod2_HCN_Pipeline" {
     }
   }
 
-  stage {
-    name = "Apply" #"Plan"
-    action {
-      name            = "Build"
-      category        = "Build"
-      provider        = "CodeBuild"
-      version         = "2"
-      owner           = "AWS"
-      input_artifacts = [var.input_artifacts]
-      configuration = {
-        ProjectName = var.name_pod2
-      }
-    }
-  }
+  # stage {
+  # name = "Apply" #"Plan"
+  # action {
+  # name            = "Build"
+  # category        = "Build"
+  # provider        = "CodeBuild"
+  # version         = "1"
+  #owner           = "AWS"
+  # input_artifacts = [var.input_artifacts]
+  # configuration = {
+  #  ProjectName = var.name_pod2
+  # }
+  # }
+  # }
 
   # stage {
   #   name = "Approve"
@@ -60,19 +65,21 @@ resource "aws_codepipeline" "Pod2_HCN_Pipeline" {
   #   }
   # }
 
-  # stage {
-  #   name = "Deploy"
-  #   action {
-  #     name            = "Deploy"
-  #     category        = "Build"
-  #     provider        = "CodeBuild"
-  #     version         = "1"
-  #     owner           = "AWS"
-  #     input_artifacts = [var.input_artifacts]
-  #     configuration = {
-  #       ProjectName = var.project_name
-  #     }
-  #   }
-  # }
+  stage {
+    name = "Deploy"
+    action {
+      name            = "Deploy"
+      category        = "Deploy"
+      provider        = "S3"
+      version         = "1"
+      owner           = "AWS"
+      input_artifacts = ["source_output"]
+      configuration = {
+        BucketName = var.s3_bucket_id
+        Extract    = "true"
+        ObjectKey  = "/"
+      }
+    }
+  }
 }
 
