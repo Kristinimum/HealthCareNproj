@@ -25,6 +25,8 @@ phases:
       - terraform init -input=false
       - terraform validate
       - terraform plan -input=false -out=tfplan
+      
   post_build:
     commands:
       - terraform apply -input=false tfplan
+     #- python unit_test.py #this command should run our unit test script. Make sure other previous commands work before testing this.
