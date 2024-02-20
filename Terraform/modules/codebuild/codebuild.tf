@@ -1,21 +1,21 @@
-provider "aws" {
-  region = "us-east-1" # Specify your desired AWS region
-}
-
+##############      CODEBUILD RESOURCE BLOCK      ##############
 resource "aws_codebuild_project" "my_project" {
-  name       = "my-codebuild-project"
-  description= "My CodeBuild Project"
-  
-  service_role = aws_iam_role.CodeBuildServiceRole.arn
-  
-  artifacts {
-    type = "NO_ARTIFACTS"
+  name        = "my-codebuild-project"
+  description = "My CodeBuild Project"
+
+  role_arn = "arn:aws:iam::#######:role/CodeBuildServiceRole"
+
+  artifact_store {
+    type     = var.artifacts_store_type #This is what Corey had in his codepipeline resource block.
+    location = var.s3_bucket_id
   }
 
+  #############     CODEBUILD STAGES BLOCK       ##############
+
   environment {
-    compute_type                = "BUILD_GENERAL1_SMALL"
-    image                       = "aws/codebuild/standard:4.0"
-    type                        = "LINUX_CONTAINER"
+    compute_type = "BUILD_GENERAL1_SMALL"
+    image        = "aws/codebuild/standard:4.0"
+    type         = "LINUX_CONTAINER"
     environment_variable {
       name  = "TERRAFORM_VERSION"
       value = "1.7.3"
@@ -23,48 +23,11 @@ resource "aws_codebuild_project" "my_project" {
   }
 
   source {
-    type            = "CODEPIPELINE"
-    buildspec = "buildspec.yml"    #doublecheck referencing correct buildspec file
-  }
+    type      = "CODEPIPELINE"
+    buildspec = "./Terraform/buildspec.yml" #doublecheck referencing correct buildspec file             
+  }                                         # "./templates/buildspec_${var.build_projects[count.index]}.yml" might use this later?
 
   tags = {
     Name = "my-codebuild-project"
   }
-}
-
-resource "aws_iam_role" "CodeBuildServiceRole" {
-  name               = "CodeBuildServiceRole"
-  assume_role_policy = jsonencode(
-    {
-      "Version": "2012-10-17",
-	    "Statement": [
-		{
-			"Action": [
-				"s3:*",
-				"cloudfront:CreateInvalidation",
-				"codebuild:StartBuild",
-				"codebuild:BatchGetBuilds",
-				"logs:CreateLogGroup",
-				"logs:CreateLogStream",
-				"logs:PutLogEvents",
-				"ssm:CreateAssociation",
-				"ssm:CreateAssociationBatch",
-				"ssm:UpdateAssociation",
-				"ssm:UpdateAssociationStatus",
-				"codecommit:GetBranch",
-				"codecommit:GetCommit",
-				"codecommit:UploadArchive"
-			],
-			"Resource": "*",
-			"Effect": "Allow"
-      Principal = {                           #I'm not sure if we need lines 60-63    
-        Service = "codebuild.amazonaws.com"
-      },
-      Action    = "sts:AssumeRole"
-		}
-	]
-}
-
-  // Attach policies as needed
- 
 }
