@@ -2,10 +2,9 @@
 resource "aws_codebuild_project" "my_project" {
   name        = "my-codebuild-project"
   description = "My CodeBuild Project"
+  service_role = "arn:aws:iam::#######:role/CodeBuildServiceRole"
 
-  role_arn = "arn:aws:iam::#######:role/CodeBuildServiceRole"
-
-  artifact_store {
+  artifacts {
     type     = var.artifacts_store_type #This is what Corey had in his codepipeline resource block.
     location = var.s3_bucket_id
   }
