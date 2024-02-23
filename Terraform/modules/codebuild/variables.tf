@@ -12,5 +12,5 @@ variable "s3_bucket_id" {
 variable "artifacts_store_type" {
   description = "Artifacts store type"
   type        = string
-  default     = "S3"
+  default     = "CODEPIPELINE"
 }

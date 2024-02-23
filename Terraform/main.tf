@@ -55,7 +55,7 @@ module "cloudfront_dist" {
 }
 
 module "codebuild" {
-  source = ".modules/codebuild"
+  source = "./modules/codebuild"
 }
 
 
