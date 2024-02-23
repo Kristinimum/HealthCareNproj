@@ -1,5 +1,5 @@
-variable "bucket_name" {
-  type    = string
-  default = "healthcare-north-website-bucket-2024"
+variable "bucket_names" {
+  type    = list(string)
+  default = ["healthcare-north-website-bucket-2024-dev", "healthcare-north-website-bucket-2024-prod"]
 }
 

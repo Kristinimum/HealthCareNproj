@@ -1,5 +1,5 @@
 output "bucketID" {
-  value = aws_s3_bucket.website_bucket.id
+  value = aws_s3_bucket.website_bucket[*].id
 }
 
 output "web_url" {
@@ -8,5 +8,5 @@ output "web_url" {
 }
 
 output "bucket_domain" {
-  value = aws_s3_bucket.website_bucket.bucket_regional_domain_name
+  value = aws_s3_bucket.website_bucket[*].bucket_regional_domain_name
 }
