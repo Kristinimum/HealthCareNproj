@@ -21,7 +21,7 @@ variable "name_pod2" {
 variable "s3_bucket_id" {
   description = "S3 bucket ID"
   type        = string
-  default     = "healthcare-north-website-bucket-2024"
+  default     = "healthcare-north-website-bucket-2024-prod"
 }
 
 # Artifacts store type variable
@@ -74,7 +74,7 @@ variable "full_repository_id" {
 
 # Branch name variable
 
-variable "branch_name" {
+variable "branch" {
   description = "Branch name"
   type        = string
   default     = "main"
