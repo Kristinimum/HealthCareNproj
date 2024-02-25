@@ -2,7 +2,7 @@
 resource "aws_codebuild_project" "my_project" {
   name        = "my-codebuild-project"
   description = "My CodeBuild Project"
-  service_role = "arn:aws:iam::#######:role/CodeBuildServiceRole"
+  service_role = "arn:aws:iam::654654434704:role/CodeBuildServiceRole"
 
   artifacts {
     type     = var.artifacts_store_type #This is what Corey had in his codepipeline resource block.
@@ -23,8 +23,8 @@ resource "aws_codebuild_project" "my_project" {
 
   source {
     type      = "CODEPIPELINE"
-    buildspec = "./Terraform/buildspec.yml" #doublecheck referencing correct buildspec file             
-  }                                         # "./templates/buildspec_${var.build_projects[count.index]}.yml" might use this later?
+    buildspec = "./Terraform/files/buildspec.yml" #doublecheck referencing correct buildspec file             
+  }                                         # "./templates/files/buildspec_${var.build_projects[count.index]}.yml" might use this later?
 
   tags = {
     Name = "my-codebuild-project"
