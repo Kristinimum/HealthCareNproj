@@ -77,7 +77,7 @@ variable "full_repository_id" {
 variable "branch" {
   description = "Branch name"
   type        = string
-  default     = "main"
+  default     = "index.html"
 }
 
 # CodeStar connector credentials variable

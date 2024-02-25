@@ -40,4 +40,4 @@ full_repository_id = "HealthCareNproj/tree/main/Terraform/files"
 
 ############## Codestar connector credentials #############
 
-# codestar_connector_credentials = "arn:aws:codestar-connections:us-east-1:#######"
+# codestar_connector_credentials = "arn:aws:codestar-connections:us-east-1:########:connection/########"
