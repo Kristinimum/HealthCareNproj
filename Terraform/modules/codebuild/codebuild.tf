@@ -1,7 +1,7 @@
 ##############      CODEBUILD RESOURCE BLOCK      ##############
-resource "aws_codebuild_project" "my_project" {
-  name        = "my-codebuild-project"
-  description = "My CodeBuild Project"
+resource "aws_codebuild_project" "HCN_project" {
+  name        = "HCN_project"
+  description = "HCN_project"
   service_role = "arn:aws:iam::654654434704:role/CodeBuildServiceRole"
 
   artifacts {
