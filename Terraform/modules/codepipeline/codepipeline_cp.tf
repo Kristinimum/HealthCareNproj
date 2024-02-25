@@ -3,7 +3,7 @@
 resource "aws_codepipeline" "Pod2_HCN_Pipeline" {
 
   name     = var.project_name
-  role_arn = "arn:aws:iam::########:role/CodePipelineServiceRole"
+  role_arn = "arn:aws:iam::654654434704:role/CodePipelineServiceRole"
 
 
   artifact_store {

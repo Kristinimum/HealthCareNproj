@@ -13,7 +13,7 @@ variable "project_name" {
 variable "name_pod2" {
   description = "CodeBuild project name for Pod2"
   type        = string
-  default     = "HCN_Pod2"
+  default     = "Pod2_HCN_Pipeline"
 }
 
 # S3 bucket ID variable
@@ -77,7 +77,7 @@ variable "full_repository_id" {
 variable "branch" {
   description = "Branch name"
   type        = string
-  default     = "index.html"
+  default     = "main"
 }
 
 # CodeStar connector credentials variable
@@ -85,7 +85,7 @@ variable "branch" {
 variable "codestar_connector_credentials" {
   description = "CodeStar connector credentials"
   type        = string
-  default     = "arn:aws:codestar-connections:us-east-1:########:connection/########"
+  default     = "arn:aws:codestar-connections:us-east-1:654654434704:connection/8886c481-372f-4f99-a632-0f11ba5bf813"
   sensitive   = true # Consider marking sensitive variables
 }
 
