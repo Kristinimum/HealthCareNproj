@@ -6,7 +6,7 @@ resource "aws_codebuild_project" "my_project" {
 
   artifacts {
     type     = var.artifacts_store_type #This is what Corey had in his codepipeline resource block.
-    location = var.s3_bucket_id
+    location = var.artifact_bucketID
   }
 
   #############     CODEBUILD STAGES BLOCK       ##############

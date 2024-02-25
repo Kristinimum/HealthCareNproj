@@ -8,7 +8,7 @@ resource "aws_codepipeline" "Pod2_HCN_Pipeline" {
 
   artifact_store {
     type     = var.artifacts_store_type
-    location = var.s3_bucket_id
+    location = var.artifact_bucketID
   }
 
 
@@ -72,7 +72,7 @@ resource "aws_codepipeline" "Pod2_HCN_Pipeline" {
       owner           = "AWS"
       input_artifacts = [var.output_artifacts]
       configuration = {
-        BucketName = var.s3_bucket_id
+        BucketName = var.website_bucketID
         Extract    = "true"
         ObjectKey  = "/"
       }
