@@ -7,6 +7,6 @@ variable "cloudfront_location_restrictions" {
   default = ["US", "CA"]
 }
 
-variable "bucketID" {}
+variable "website_bucketID" {}
 
 variable "bucket_domain" {}

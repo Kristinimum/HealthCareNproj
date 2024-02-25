@@ -1,6 +1,3 @@
-##############      VARIABLES     ################
-
-# CodeBuild project name variable
 
 variable "project_name" {
   description = "CodeBuild project name"
@@ -8,23 +5,21 @@ variable "project_name" {
   default     = "Pod2_HCN_Pipeline"
 }
 
-# CodeBuild project name variable specific to Pod2
-
 variable "name_pod2" {
   description = "CodeBuild project name for Pod2"
   type        = string
   default     = "Pod2_HCN_Pipeline"
 }
 
-# S3 bucket ID variable
 
-variable "s3_bucket_id" {
-  description = "S3 bucket ID"
-  type        = string
-  default     = "healthcare-north-website-bucket-2024-prod"
-}
 
-# Artifacts store type variable
+
+
+
+
+# ARTIFACTS VARIABLES (5)
+
+variable "artifact_bucketID" {}
 
 variable "artifacts_store_type" {
   description = "Artifacts store type"
@@ -32,23 +27,11 @@ variable "artifacts_store_type" {
   default     = "S3"
 }
 
-# Repository name variable
-
-variable "repo_name" {
-  description = "Repository name"
+variable "output_artifacts" {
+  description = "Output artifacts"
   type        = string
-  default     = "Pod2_HCN_Repo"
+  default     = "tf-code"
 }
-
-# Source provider variable
-
-variable "source_provider" {
-  description = "Source provider"
-  type        = string
-  default     = "GitHub"
-}
-
-# Input artifacts variable
 
 variable "input_artifacts" {
   description = "Input artifacts"
@@ -56,20 +39,45 @@ variable "input_artifacts" {
   default     = "tf-code"
 }
 
-# Output artifacts variable
-
-variable "output_artifacts" {
-  description = "Output artifacts"
+variable "output_artifact_format" {
+  description = "Output artifact format"
   type        = string
-  default     = "tf-code"
+  default     = "CODE_ZIP"
 }
 
-# Full repository ID variable
+
+
+
+
+# S3 BUCKET - WEBSITE
+
+variable "website_bucketID" {}
+
+
+
+
+
+
+# REPOSITORY VARIABLES (4)
+
+variable "repo_name" {
+  description = "Repository name"
+  type        = string
+  default     = "Pod2_HCN_Repo"
+}
+
+
+variable "source_provider" {
+  description = "Source provider"
+  type        = string
+  default     = "GitHub"
+}
+
 
 variable "full_repository_id" {
   description = "Full repository ID"
   type        = string
-  default     = "HealthCareNproj/Terraform/files"
+  default     = "Kristinimum/HealthCareNproj"
 }
 
 # Branch name variable
@@ -80,6 +88,11 @@ variable "branch" {
   default     = "main"
 }
 
+
+
+
+
+
 # CodeStar connector credentials variable
 
 variable "codestar_connector_credentials" {
@@ -89,13 +102,6 @@ variable "codestar_connector_credentials" {
   sensitive   = true # Consider marking sensitive variables
 }
 
-# Output artifact format variable
-
-variable "output_artifact_format" {
-  description = "Output artifact format"
-  type        = string
-  default     = "CODE_ZIP"
-}
 
 # Role name variable
 
@@ -136,3 +142,4 @@ variable "approve_url" {
   type        = string
   default     = "url"
 }
+

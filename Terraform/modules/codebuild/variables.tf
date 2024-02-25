@@ -1,11 +1,7 @@
 ################# variables.tf for codebuild   ############################
 # S3 bucket ID variable
 
-variable "s3_bucket_id" {
-  description = "S3 bucket ID"
-  type        = string
-  default     = "healthcare-north-website-bucket-2024"
-}
+variable "artifact_bucketID" {}
 
 # Artifacts store type variable
 
