@@ -30,6 +30,12 @@ provider "aws" {
 
 ##############      MODULES     ################
 
+module "build" {
+  source = "./modules/codebuild"
+  artifact_bucketID = module.buckets_s3.artifact_bucketID
+}
+
+
 module "pipeline" {
   source = "./modules/codepipeline"
   artifact_bucketID = module.buckets_s3.artifact_bucketID

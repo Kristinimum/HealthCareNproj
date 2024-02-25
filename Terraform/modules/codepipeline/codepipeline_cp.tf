@@ -42,7 +42,7 @@ resource "aws_codepipeline" "Pod2_HCN_Pipeline" {
       owner           = "AWS"
       input_artifacts = [var.input_artifacts]
       configuration = {
-        ProjectName = var.name_pod2
+        ProjectName = var.project_name
       }
     }
   }
