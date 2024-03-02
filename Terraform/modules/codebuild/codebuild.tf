@@ -1,12 +1,12 @@
 ##############      CODEBUILD RESOURCE BLOCK      ##############
-resource "aws_codebuild_project" "HCN_project" {
-  name        = "HCN_project"
-  description = "HCN_project"
+resource "aws_codebuild_project" "my_project" {
+  name          = var.project_name
+  description   = var.project_desc
   service_role = "arn:aws:iam::654654434704:role/CodeBuildServiceRole"
 
   artifacts {
     type     = var.artifacts_store_type #This is what Corey had in his codepipeline resource block.
-    location = var.artifact_bucketID
+    location = var.s3_bucket_id
   }
 
   #############     CODEBUILD STAGES BLOCK       ##############
