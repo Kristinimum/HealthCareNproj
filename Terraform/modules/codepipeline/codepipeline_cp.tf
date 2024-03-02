@@ -27,22 +27,22 @@ resource "aws_codepipeline" "Pod2_HCN_Pipeline" {
         FullRepositoryId     = var.full_repository_id
         BranchName           = var.branch
         ConnectionArn        = var.codestar_connector_credentials
-        OutputArtifactFormat = var.output_artifact_format
       }
     }
   }
 
   stage {
-    name = "Apply" #"Plan"
+    name = "Build" #"Plan"
     action {
       name            = "Build"
       category        = "Build"
       provider        = "CodeBuild"
       version         = "1"
       owner           = "AWS"
-      input_artifacts = [var.input_artifacts]
+      input_artifacts = [var.output_artifacts]
+      output_artifacts =[var.build_artifacts]
       configuration = {
-        ProjectName = var.name_pod2
+        ProjectName = var.project_name
       }
     }
   }
@@ -70,7 +70,7 @@ resource "aws_codepipeline" "Pod2_HCN_Pipeline" {
       provider        = "S3"
       version         = "1"
       owner           = "AWS"
-      input_artifacts = [var.output_artifacts]
+      input_artifacts = [var.build_artifacts]
       configuration = {
         BucketName = var.s3_bucket_id
         Extract    = "true"

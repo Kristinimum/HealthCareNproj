@@ -8,6 +8,12 @@ variable "project_name" {
   default     = "Pod2_HCN_Pipeline"
 }
 
+variable "project_desc" {
+  description = "CodeBuild project name"
+  type        = string
+  default     = "Pod2_HCN_Pipeline"
+}
+
 # CodeBuild project name variable specific to Pod2
 
 variable "name_pod2" {
@@ -21,7 +27,7 @@ variable "name_pod2" {
 variable "s3_bucket_id" {
   description = "S3 bucket ID"
   type        = string
-  default     = "healthcare-north-website-bucket-2024-prod"
+  default     = "healthcare-north-website-bucket-2024-dev"
 }
 
 # Artifacts store type variable
@@ -53,7 +59,7 @@ variable "source_provider" {
 variable "input_artifacts" {
   description = "Input artifacts"
   type        = string
-  default     = "tf-code"
+  default     = "source output"
 }
 
 # Output artifacts variable
@@ -61,7 +67,13 @@ variable "input_artifacts" {
 variable "output_artifacts" {
   description = "Output artifacts"
   type        = string
-  default     = "tf-code"
+  default     = "source_output"
+}
+
+variable "build_artifacts" {
+  description = "Output artifacts"
+  type        = string
+  default     = "build_output"
 }
 
 # Full repository ID variable
@@ -69,7 +81,7 @@ variable "output_artifacts" {
 variable "full_repository_id" {
   description = "Full repository ID"
   type        = string
-  default     = "HealthCareNproj/Terraform/files"
+  default     = "Kristinimum/HealthCareNproj"
 }
 
 # Branch name variable

@@ -38,7 +38,7 @@ locals {
 
 module "codepipeline" {
   source = "./modules/codepipeline"
-  #source             = "https://github.com/Kristinimum/HealthCareNproj/tree/main/Terraform/files"
+  #source             = "https://github.com/Kristinimum/HealthCareNproj/Terraform/files"
   #project_name       = var.project_name
   #s3_bucket_id       = var.s3_bucket_id
   #full_repository_id = var.full_repository_id
@@ -54,8 +54,9 @@ module "cloudfront_dist" {
   bucket_domain = module.buckets_s3.bucket_domain
 }
 
-module "codebuild" {
+module "my_codebuild" {
   source = "./modules/codebuild"
+
 }
 
 
